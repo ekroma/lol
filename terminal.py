@@ -1,3 +1,5 @@
+
+
 class Terminal:
     def __init__(self, pin, num):
         self.__pin = self.set_pin(pin)
@@ -12,7 +14,8 @@ class Terminal:
             else:
                 print('card number must contain 16 digits')
         except:
-            raise Exception('InvalidValue: card number code must contain only numbers ')
+            print('InvalidValue: card number code must contain only numbers ')
+
 
     def set_pin(self, pin):
         try:
@@ -22,14 +25,14 @@ class Terminal:
             else:
                 print('Pin code must contain 4 digits')
         except:
-            raise Exception('InvalidValue: pin code must contain only numbers ')
+            print('InvalidValue: pin code must contain only numbers ')
     def put(self, pin, money):
         if self.set_pin(pin) == self.__pin:
             try:
                 money = int(money)
                 self.money += money
             except:
-                raise Exception('InvalidValue must be only a digits')
+                print('InvalidValue must be only a digits')
         else:
             print('wrong pin')
 
@@ -43,11 +46,14 @@ class Terminal:
                 else:
                     print('токого нет')
             except:
-                raise Exception('InvalidValue must be only a digits')
+                print('InvalidValue must be only a digits')
         else:
-            print('неверный пин')
+            print('wrong pin')
     def listing(self, pin):
         if self.set_pin(pin) == self.__pin:
             print('Ваши денги состовляют: ', self.money, 'долларав')
         else:
-            print('неверный пин')
+            print('wrong pin')
+    
+    def check_pin(self):
+        return self.__pin
