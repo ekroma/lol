@@ -1,7 +1,7 @@
 class Terminal:
     def __init__(self, pin, num):
-        self.pin = self.set_pin(pin)
-        self.num = self.set_card_num(num)
+        self.__pin = self.set_pin(pin)
+        self._num = self.set_card_num(num)
         self.money = 0
         
     def set_card_num(self, num):
@@ -24,7 +24,7 @@ class Terminal:
         except:
             raise Exception('InvalidValue: pin code must contain only numbers ')
     def put(self, pin, money):
-        if self.set_pin(pin) == self.pin:
+        if self.set_pin(pin) == self.__pin:
             try:
                 money = int(money)
                 self.money += money
@@ -34,7 +34,7 @@ class Terminal:
             print('wrong pin')
 
     def get_money(self, pin, money):
-        if self.set_pin(pin) == self.pin:
+        if self.set_pin(pin) == self.__pin:
             try:
                 money = int(money)
                 valid = [10,100,200,5000]
@@ -47,7 +47,7 @@ class Terminal:
         else:
             print('неверный пин')
     def listing(self, pin):
-        if self.set_pin(pin) == self.pin:
+        if self.set_pin(pin) == self.__pin:
             print('Ваши денги состовляют: ', self.money, 'долларав')
         else:
             print('неверный пин')
